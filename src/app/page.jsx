@@ -22,80 +22,22 @@ import { WithAuth } from '@/HOCs/WithAuth'
   const [whatsapp, setWhatsapp] = useState(false)
   const [msg, setMsg] = useState(false)
   const [state, setState] = useState(false)
-  const { user, userDB, setUserProfile, setUserSuccess, success, setUserDatas } = useUser()
+  const { user, userDB, item, setUserItem, modal, setUserModal, setUserProfile, setUserSuccess, success, setUserDatas } = useUser()
 
 
-  function handlerState (item) {
-    item ==state 
-    ? setState(null)
-    : setState(item)
+  // function handlerState (item) {
+  //   item == state 
+  //   ? setState(null)
+  //   : setState(item)
+  // }
+
+  function handlerState (data) {
+    data == modal 
+    ? setUserModal(null)
+    : setUserModal(data)
   }
 
 
-  const Cards = [
-    {
-      image: 'perfil1.png',
-      name: 'Oscar Saucedo',
-      text: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-    {
-      image: 'perfil2.png',
-      name: 'Oscar Saucedo',
-      text: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-    {
-      image: 'perfil3.png',
-      name: 'Dayana Segales',
-      text: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    }
-  ]
-
-
-  const ListsA = [
-    {
-      title: 'Articulo: Nombre del atículo puede ser extenso',
-      msg: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-
-    {
-      title: 'Articulo: Nombre del atículo puede ser extenso',
-      msg: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-
-    {
-      title: 'Articulo: Nombre del atículo puede ser extenso',
-      msg: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-
-    {
-      title: 'Articulo: Nombre del atículo puede ser extenso Nombre del atículo puede ser extenso Nombre del atículo puede ser extenso',
-      msg: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-
-    {
-      title: 'Articulo: Nombre del atículo puede ser extenso Nombre del atículo puede ser extenso',
-      msg: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-
-    {
-      title: 'Articulo: Nombre del atículo puede ser extenso Nombre del atículo puede ser extenso Nombre del atículo puede ser extenso',
-      msg: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-
-    {
-      title: 'Articulo: Nombre del atículo puede ser extenso',
-      msg: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-
-    {
-      title: 'Articulo: Nombre del atículo puede ser extenso',
-      msg: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis elementum, diam dictumst suspendisse dignissim vel elit cras. “'
-    },
-
-
-
-
-  ]
 
 
 
@@ -112,9 +54,8 @@ import { WithAuth } from '@/HOCs/WithAuth'
 console.log(userDB)
   return (
     userDB && <main className="flex min-h-screen w-full flex-col items-center justify-between px-5">
-     {userDB && <Modal theme={state} />}
+     {userDB && <Modal theme={modal} i={item} />}
 
-    
       <section className='max-h-screen w-full pt-18 pb-0 flex flex-col justify-between items-center lg:flex-row justify-around items-center pt-[70px]'>
         <div className='w-screen h-[50vh] flex justify-center items-end lg:w-[50vw] lg:h-[100vh]' style={{ backgroundImage: `url(${userDB.frontPage['url']})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
         </div>
@@ -144,7 +85,7 @@ console.log(userDB)
             {
               userDB && userDB.services !== undefined && Object.keys(userDB.services).map((i, index) =>
                 <div>
-                  <CardH image={userDB.services[i]['url']} service={userDB.services[i]['titulo de servicio']} description={userDB.services[i]['descripcion de servicio']} remote={userDB.services[i]['servicio remoto']} cost={userDB.services[i]['costo']} time={userDB.services[i]['tiempo de entrega']} item={i} index={index}></CardH>
+                  <CardH image={userDB.services[i]['url']} service={userDB.services[i]['titulo de servicio']} description={userDB.services[i]['descripcion de servicio']} remote={userDB.services[i]['servicio remoto']} cost={userDB.services[i]['costo']} time={userDB.services[i]['tiempo de entrega']} i={i} index={index}></CardH>
                   <div class="inline-flex items-center justify-center w-full">
                     <hr class="w-64 h-px my-8 bg-[#00A582] border-0 dark:bg-gray-700" />
                     <span class="absolute px-3 font-medium text-[#00A582] -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900 z-0">•</span>
