@@ -1,6 +1,7 @@
 'use client';
-import {useState} from 'react'
 import { useUser } from '@/context/Context'
+
+import {useState} from 'react'
 import Button from '@/components/Button'
 import Modal from '@/components/Modal'
 import { removeData } from '@/firebase/database';
@@ -58,10 +59,10 @@ export default function CardH({ image, service, description, remote, cost, time,
                     : ''
                 }
             </div>
-            <div className='flex'>
+            {user && <div className='flex'>
                 <Button theme='Danger' click={handlerRemoveData}>Eliminar</Button>
                 <Button theme='Secondary' click={handlerEditData}>Editar</Button>
-            </div>
+            </div>}
         </>
 
     )

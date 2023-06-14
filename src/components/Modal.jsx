@@ -43,6 +43,11 @@ export default function Modal({ theme, styled, click, children, }) {
             [e.target[4].name]: e.target[4].value,
             [e.target[5].name]: e.target[5].value,
             [e.target[6].name]: e.target[6].value,
+            [e.target[7].name]: e.target[7].value,
+            [e.target[8].name]: e.target[8].value,
+            [e.target[9].name]: e.target[9].value,
+            [e.target[10].name]: e.target[10].value,
+            [e.target[11].name]: e.target[11].value,
         }
         e.target[0].files[0] && uploadIMG('frontPage', 'frontPage', 'frontPage', e.target[0].files[0], obj, setUserData, setUserSuccess, 'url')
         e.target[1].files[0] && uploadIMG('frontPage', 'frontIMG', 'frontIMG', e.target[1].files[0], obj, setUserData, setUserSuccess, 'urlIMG')
@@ -66,6 +71,17 @@ export default function Modal({ theme, styled, click, children, }) {
         e.target[0].files[0] === undefined && writeUserData(`services/${item !== undefined ? item : filename}`, obj, setUserData, setUserSuccess)
     }
 
+
+    function addArticle(e) {
+        e.preventDefault()
+
+        const filename = generateUUID()
+        const obj = {
+            [e.target[0].name]: e.target[0].value,
+            [e.target[1].name]: e.target[1].value,
+        }
+ writeUserData(`articles/${item !== undefined ? item : filename}`, obj, setUserData, setUserSuccess)
+    }
     useEffect(() => {
         setData(userDB)
         item !== undefined && userDB && userDB.services && userDB.services[item]['servicio remoto'] && setCheck(userDB.services[item]['servicio remoto'])
@@ -137,6 +153,26 @@ export default function Modal({ theme, styled, click, children, }) {
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Whatsapp</label>
                                 <input type="text" name="whatsapp" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['whatsapp']} />
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Facebook</label>
+                                <input type="text" name="facebook" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['facebook']} />
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Twiter</label>
+                                <input type="text" name="twiter" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['twiter']} />
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Gmail</label>
+                                <input type="text" name="gmail" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['google']} />
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Instagram</label>
+                                <input type="text" name="instagram" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['instagram']} />
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Linkedin</label>
+                                <input type="text" name="linkedin" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['linkedin']} />
                             </div>
                         </div>
                     </div>
@@ -211,7 +247,29 @@ export default function Modal({ theme, styled, click, children, }) {
                 </form>
             </div>
             break
-            
+            case 'Articulos':
+            return <div className="fixed top-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-30">
+                <form className="w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-4 px-5" onSubmit={addArticle}>
+                <h2 className="text-base font-semibold leading-7 text-gray-900">Administrar artículos</h2>
+
+                    <div className="border-b border-gray-900/10 pb-12">
+                        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                            <div className="sm:col-span-3">
+                                <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Título de artículo</label>
+                                <input type="text" name="titulo de articulo" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['titulo de servicio']}/>
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Url</label>
+                                <input type="text" name="url" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['descripcion de servicio']}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mt-6 flex items-center justify-end gap-x-6">
+                        <Button type="submit" theme="Primary" >Guardar</Button>
+                    </div>
+                </form>
+            </div>
+            break
         default:
     }
 }

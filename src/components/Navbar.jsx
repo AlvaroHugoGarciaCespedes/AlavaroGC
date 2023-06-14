@@ -1,4 +1,6 @@
 'use client'
+import { useUser } from '@/context/Context'
+
 import { useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
@@ -7,6 +9,8 @@ import Button from '@/components/Button'
 
 
 export default function Navbar({ children }) {
+    const { user, userDB, item, setUserItem, modal, setUserModal, setUserProfile, setUserSuccess, success, setUserDatas } = useUser()
+
     const router = useRouter()
     const pathname = usePathname();
     const [nav, setNav] = useState(false)
@@ -44,9 +48,9 @@ export default function Navbar({ children }) {
                     <li>
                         <a href="#Contacto" className="block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-blue-700 lg:p-0">Contacto</a>
                     </li>
-                    <li>
+                    {user && <li>
                         <Button theme="MiniPrimary" click={signOutHandler}>Cerrar sesión</Button>
-                    </li>
+                    </li>}
                 </ul>
             </div>}
         </nav>
