@@ -25,7 +25,7 @@ async function uploadIMG(ruteDB, ruteSTG, fileName, file, object, setUserData, s
             .then((url) => {
                 let obj = {
                     ...object,
-                    [nameDB]:url             
+                    [nameDB]:url                 
                 }
                 return writeUserData(ruteDB, obj, setUserData, setUserSuccess)
             })
