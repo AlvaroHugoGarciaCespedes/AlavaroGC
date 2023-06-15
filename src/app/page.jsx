@@ -13,10 +13,6 @@ import Navleft from '@/components/Navleft'
 
 import { WithAuth } from '@/HOCs/WithAuth'
 
-
-
-
-
 function Home() {
 
   const [whatsapp, setWhatsapp] = useState(false)
@@ -36,12 +32,6 @@ function Home() {
       ? setUserModal(null)
       : setUserModal(data)
   }
-
-
-
-
-
-
 
   const whatsappHandler = () => {
     setWhatsapp(!whatsapp)
@@ -95,7 +85,7 @@ function Home() {
           </ul>
         </div>
       </section>
-      <section className='w-full pt-[70px]' id="Articulos">
+      {/* <section className='w-full pt-[70px]' id="Articulos">
         <Subtitle>Artículos</Subtitle>
         <div className='lg:grid lg:grid-cols-2 lg:gap-4 py-5 mt-5'>
           <img src="./articulo.png" className='pt-5 pb-5' alt="" />
@@ -108,7 +98,7 @@ function Home() {
             }
           </ul>
         </div>
-      </section>
+      </section> */}
 
       <Navleft funcion={handlerState}></Navleft>
       <img src="/whatsapp.svg" class="fixed h-[50px] w-[50px] bottom-[80px] right-[20px] lg:bottom-[20px]" onClick={whatsappHandler} alt="" />
