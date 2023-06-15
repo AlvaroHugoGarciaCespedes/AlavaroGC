@@ -94,7 +94,7 @@ function Home() {
         <Subtitle>Artículos</Subtitle>
         <div className='lg:grid lg:grid-cols-2 lg:gap-4 py-5 mt-5'>
           <img src="./articulo.png" className='pt-5 pb-5' alt="" />
-          <ul className='border-l-2 border-[#01C89E] pl-5 pt-5 pb-5 flex flex-col justify-between '>
+          <ul className='border-l-2 border-[#01C89E] pl-5 pt-5 pb-5 flex flex-col justify-center '>
             {
               userDB && userDB.articles !== undefined && Object.keys(userDB.articles).map((i, index) => <List>
                 <Link href={userDB.articles[i] && userDB.articles[i]['url']}>{userDB.articles[i]['titulo de articulo']}</Link>
@@ -108,7 +108,7 @@ function Home() {
       <Navleft funcion={handlerState}></Navleft>
       <img src="/whatsapp.svg" className="fixed h-[50px] w-[50px] bottom-[80px] right-[20px] lg:bottom-[20px]" onClick={whatsappHandler} alt="" />
 
-      <div className={`fixed bottom-[80px] right-[20px] pt-14 pb-9 px-2 flex flex-grow flex-col justify-end rounded-[10px] border-gray-200 shadow bg-[url('/background.jpeg')] ${whatsapp ? 'fixed' : 'hidden'}`} >
+      <div className={`fixed bottom-[80px] right-[20px] pt-14 pb-9 px-2 flex flex-grow flex-col justify-end rounded-[10px] border-gray-200 shadow bg-[#F1E6E0] ${whatsapp ? 'fixed' : 'hidden'}`} >
         <div className='absolute top-0 left-0  w-full h-[50px] bg-[#00826A] rounded-t-[10px]'>
           <img src="/perfil.jpg" className='absolute h-[35px] w-[35px] left-[5px] top-[7.5px]  rounded-[35px]' alt="" />
           <div className='absolute flex flex-col left-[50px] top-[12px] text-white text-[12px]'>
