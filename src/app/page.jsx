@@ -10,6 +10,7 @@ import Card from '@/components/Card'
 import CardH from '@/components/CardH'
 import Modal from '@/components/Modal'
 import Navleft from '@/components/Navleft'
+import Link from 'next/link'
 
 import { WithAuth } from '@/HOCs/WithAuth'
 
@@ -40,6 +41,7 @@ function Home() {
   const onChangeWhatsapp = (e) => {
     setMsg(e.target.value)
   }
+  console.log(userDB)
 
   return (
     userDB && <main className="flex min-h-screen w-full flex-col items-center justify-between px-5">
@@ -85,20 +87,20 @@ function Home() {
           </ul>
         </div>
       </section>
-      {/* <section className='w-full pt-[70px]' id="Articulos">
+      <section className='w-full pt-[70px]' id="Articulos">
         <Subtitle>Artículos</Subtitle>
         <div className='lg:grid lg:grid-cols-2 lg:gap-4 py-5 mt-5'>
           <img src="./articulo.png" className='pt-5 pb-5' alt="" />
           <ul className='border-l-2 border-[#01C89E] pl-5 pt-5 pb-5 flex flex-col justify-between '>
-            {
+            {/* {
               userDB && userDB.articles !== undefined && Object.keys(userDB.articles).map((i, index) => <List key={index}>
-                <a href={userDB.articles[i]['url']}>{userDB.articles[i]['titulo de articulo']}</a>
+                <Link href={userDB.articles[i]['url']}>{userDB.articles[i]['titulo de articulo']}</Link>
               </List>
               )
-            }
+            } */}
           </ul>
         </div>
-      </section> */}
+      </section>
 
       <Navleft funcion={handlerState}></Navleft>
       <img src="/whatsapp.svg" class="fixed h-[50px] w-[50px] bottom-[80px] right-[20px] lg:bottom-[20px]" onClick={whatsappHandler} alt="" />
