@@ -43,7 +43,7 @@ function Home() {
     const whats = msg.replaceAll('%20')
     userDB && userDB.frontPage && userDB.frontPage['whatsapp'] && window.open(`https://api.whatsapp.com/send?phone=${userDB.frontPage['whatsapp']}&text=${whats}`, '_blank')
   }
-
+console.log(userDB)
   return (
     userDB && <main className="flex min-h-screen w-full flex-col items-center justify-between px-5">
       {userDB && <Modal theme={modal} i={item} />}
@@ -64,8 +64,8 @@ function Home() {
             <div className='flex flex-col'><span className='text-[#00A582] text-center text-[25px] font-bold'>3K</span><span className='text-[#00A582]'>Servicios</span></div>
           </div>
           <div className='lg:grid lg:grid-cols-2 lg:gap-5 '>
-            <Button theme="Secondary">Servicios</Button>
-            <Button theme="Primary">Contactar</Button>
+            <Link href="#Servicios"><Button theme="Secondary" >Servicios</Button></Link> 
+            <Link href={`https://api.whatsapp.com/send?phone=${userDB.frontPage['whatsapp']}&text=Hola%20Alvaro`}><Button theme="Primary" >Contactar</Button></Link>
           </div>
         </div>
       </section>
@@ -77,7 +77,7 @@ function Home() {
             {
               userDB && userDB.services !== undefined && Object.keys(userDB.services).map((i, index) =>
                 <div>
-                  <CardH image={userDB.services[i]['url']} service={userDB.services[i]['titulo de servicio']} description={userDB.services[i]['descripcion de servicio']} remote={userDB.services[i]['servicio remoto']} cost={userDB.services[i]['costo']} time={userDB.services[i]['tiempo de entrega']} i={i} index={index}></CardH>
+                  <CardH image={userDB.services[i]['url']} service={userDB.services[i]['titulo de servicio']} description={userDB.services[i]['descripcion de servicio']} remote={userDB.services[i]['servicio remoto']} cost={userDB.services[i]['costo']} time={userDB.services[i]['tiempo de entrega']} whatsapp={userDB.services[i]['whatsapp de servicio']} i={i} index={index}></CardH>
                   <div className="inline-flex items-center justify-center w-full">
                     <hr className="w-64 h-px my-8 bg-[#00A582] border-0 dark:bg-gray-700" />
                     <span className="absolute px-3 font-medium text-[#00A582] -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900 z-0">•</span>
@@ -131,11 +131,11 @@ function Home() {
         </div>
 
       </div>
-      <footer className="w-full bg-neutral-900 text-center text-white mt-[70px] z-20">
+      <footer className="w-full bg-neutral-900 text-center text-white mt-[70px] z-20" id="Contacto">
         <div className="container px-6 pt-6 flex justify-center">
           <div className="mb-6 flex justify-center">
             <a
-              href="#!"
+              href={userDB.frontPage && userDB.frontPage.facebook}
               type="button"
               className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
@@ -151,7 +151,7 @@ function Home() {
             </a>
 
             <a
-              href="#!"
+              href={userDB.frontPage && userDB.frontPage.twiter}
               type="button"
               className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
@@ -167,7 +167,7 @@ function Home() {
             </a>
 
             <a
-              href="#!"
+              href={userDB.frontPage && userDB.frontPage.gmail}
               type="button"
               className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
@@ -185,7 +185,7 @@ function Home() {
             </a>
 
             <a
-              href="#!"
+              href={userDB.frontPage && userDB.frontPage.instagram}
               type="button"
               className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
@@ -201,7 +201,7 @@ function Home() {
             </a>
 
             <a
-              href="#!"
+              href={userDB.frontPage && userDB.frontPage.linkedin}
               type="button"
               className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init

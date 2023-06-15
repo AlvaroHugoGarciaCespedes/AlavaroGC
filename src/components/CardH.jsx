@@ -1,12 +1,13 @@
 'use client';
 import { useUser } from '@/context/Context'
 
-import {useState} from 'react'
+import { useState } from 'react'
 import Button from '@/components/Button'
 import Modal from '@/components/Modal'
 import { removeData } from '@/firebase/database';
+import Link from 'next/link';
 
-export default function CardH({ image, service, description, remote, cost, time, i, index }) {
+export default function CardH({ image, service, description, remote, cost, time, whatsapp, i, index }) {
 
     const { user, userDB, item, setUserItem, setUserModal, setUserProfile, setUserSuccess, success, setUserData } = useUser()
 
@@ -28,7 +29,7 @@ export default function CardH({ image, service, description, remote, cost, time,
                     ? <div className="hidden md:inline-block h-48 lg:h-auto w-[50%] flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center " style={{ backgroundImage: `url(${image})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                     </div>
                     : ''}
-                <div className=" p-4 flex flex-col justify-between leading-normal">
+                <div className="px-2 py-4 md:p-4 flex flex-col justify-between leading-normal">
                     <div className="mb-8">
                         <div className=" font-bold text-xl mb-2 text-[#00A582]">
                             {service}
@@ -46,10 +47,13 @@ export default function CardH({ image, service, description, remote, cost, time,
                             <p className="text-gray-600">{time}</p>
                         </div>
                     </div>
-                    <div className="flex items-baseline text-gray-900 dark:text-white">
+                    <div className="flex items-baseline justify-between text-gray-900 dark:text-white">
                         <span className="text-3xl font-semibold">BOB</span>
-                        <span className="text-5xl font-extrabold tracking-tight">{cost}</span>
-                        <Button theme='Primary'>Solicitar Servicio</Button>
+                        <span className="text-5xl font-extrabold tracking-tight mr-[5px] lg:mr-[20px]">{cost}</span>
+                        <Link href={`https://api.whatsapp.com/send?phone=${whatsapp}&text=Hola%20Alvaro`}>
+                            <Button theme='Primary'>Solicitar Servicio</Button>
+                        </Link>
+
 
                     </div>
                 </div>
