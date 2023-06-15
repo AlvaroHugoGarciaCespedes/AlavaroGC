@@ -15,7 +15,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Modal({ theme, styled, click, children, }) {
 
-    const { user, userDB, setUserItem, item, setUserProfile, setUserSuccess, success, setUserData } = useUser()
+    const { user, userDB, setUserItem, setUserModal, item, setUserProfile, setUserSuccess, success, setUserData } = useUser()
 
     const router = useRouter()
     const [data, setData] = useState({})
@@ -82,17 +82,24 @@ export default function Modal({ theme, styled, click, children, }) {
             [e.target[0].name]: e.target[0].value,
             [e.target[1].name]: e.target[1].value,
         }
- writeUserData(`articles/${item !== undefined ? item : filename}`, obj, setUserData, setUserSuccess)
+        writeUserData(`articles/${item !== undefined ? item : filename}`, obj, setUserData, setUserSuccess)
     }
+
+
+function close () {
+    setUserModal(false)
+}
+
+
     useEffect(() => {
         setData(userDB)
-        item !== undefined && userDB && userDB.services && userDB.services[item]['servicio remoto'] && setCheck(userDB.services[item]['servicio remoto'])
+        // item !== undefined && userDB && userDB.services && userDB.services[item]['servicio remoto'] && setCheck(userDB.services[item]['servicio remoto'])
     }, [userDB])
 
     switch (theme) {
         case 'Portada':
             return <div className="fixed top-0 left-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-30">
-                <form className="w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-16 lg:pb-4 px-5" onSubmit={saveFrontPage}>
+                <form className="relative w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-16 lg:pb-4 px-5" onSubmit={saveFrontPage}>
                     <div className="col-span-full">
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Administrar portada principal</h2>
                         <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">Foto de perfil de portada</label>
@@ -154,7 +161,7 @@ export default function Modal({ theme, styled, click, children, }) {
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Whatsapp</label>
-                                <input type="text" name="whatsapp" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['whatsapp']} ref={inputRefWhatsApp}/>
+                                <input type="text" name="whatsapp" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['whatsapp']} ref={inputRefWhatsApp} />
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Facebook</label>
@@ -181,6 +188,9 @@ export default function Modal({ theme, styled, click, children, }) {
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                         <Button type="submit" theme="Primary">Guardar</Button>
                     </div>
+                    <div className="absolute w-[50px] top-5 right-5 text-white p-1 rounded-tl-lg rounded-br-lg text-center bg-red-600" onClick={close}>
+                        X
+                    </div>
                 </form>
             </div>
 
@@ -190,12 +200,12 @@ export default function Modal({ theme, styled, click, children, }) {
 
         case 'Servicios':
             return <div className="fixed top-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-30">
-                <form className="w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-4 px-5" onSubmit={addService}>
+                <form className="relative w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-4 px-5" onSubmit={addService}>
                     <div className="col-span-full">
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Administrar Servicios</h2>
                         <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">Foto de servicio</label>
                         <div className="w-full flex justify-center">
-                            <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 md:w-[250px] md:h-[200px]"  style={{ backgroundImage: `url('${dataURL && dataURL.servicioIMG && dataURL.servicioIMG ? dataURL.servicioIMG : (userDB && userDB.services && userDB.services[item] && userDB.services[item].url)}')`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                            <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 md:w-[250px] md:h-[200px]" style={{ backgroundImage: `url('${dataURL && dataURL.servicioIMG && dataURL.servicioIMG ? dataURL.servicioIMG : (userDB && userDB.services && userDB.services[item] && userDB.services[item].url)}')`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                 <div className="text-center">
                                     <svg className="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                         <path fillRule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clipRule="evenodd" />
@@ -223,51 +233,57 @@ export default function Modal({ theme, styled, click, children, }) {
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Título de servicio</label>
-                                <input type="text" name="titulo de servicio" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['titulo de servicio']}/>
+                                <input type="text" name="titulo de servicio" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['titulo de servicio']} />
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Descripción de servicio</label>
-                                <input type="text" name="descripcion de servicio" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['descripcion de servicio']}/>
+                                <input type="text" name="descripcion de servicio" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['descripcion de servicio']} />
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Tiempo de entrega</label>
-                                <input type="text" name="tiempo de entrega" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['tiempo de entrega']}/>
+                                <input type="text" name="tiempo de entrega" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['tiempo de entrega']} />
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Costo</label>
-                                <input type="text" name="costo" id="first-name" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['costo']}/>
+                                <input type="text" name="costo" id="first-name" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['costo']} />
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Whatsapp para la solicitud de servicio</label>
-                                <input type="text" name="whatsapp de servicio" ref={inputRefWhatsApp} id="first-name" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['whatsapp de servicio']}/>
+                                <input type="text" name="whatsapp de servicio" ref={inputRefWhatsApp} id="first-name" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['whatsapp de servicio']} />
                             </div>
                         </div>
                     </div>
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                         <Button type="submit" theme="Primary" >Guardar</Button>
+                    </div> <div className="absolute w-[50px] top-5 right-5 text-white p-1 rounded-tl-lg rounded-br-lg text-center bg-red-600" onClick={close}>
+                        X
                     </div>
+
                 </form>
             </div>
             break
-            case 'Articulos':
+        case 'Articulos':
             return <div className="fixed top-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-30">
-                <form className="w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-4 px-5" onSubmit={addArticle}>
-                <h2 className="text-base font-semibold leading-7 text-gray-900">Administrar artículos</h2>
+                <form className="relative w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-4 px-5" onSubmit={addArticle}>
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">Administrar artículos</h2>
 
                     <div className="border-b border-gray-900/10 pb-12">
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Título de artículo</label>
-                                <input type="text" name="titulo de articulo" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['titulo de servicio']}/>
+                                <input type="text" name="titulo de articulo" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['titulo de servicio']} />
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Url</label>
-                                <input type="text" name="url" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['descripcion de servicio']}/>
+                                <input type="text" name="url" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['descripcion de servicio']} />
                             </div>
                         </div>
                     </div>
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                         <Button type="submit" theme="Primary" >Guardar</Button>
+                    </div>
+                    <div className="absolute w-[50px] top-5 right-5 text-white p-1 rounded-tl-lg rounded-br-lg text-center bg-red-600" onClick={close}>
+                        X
                     </div>
                 </form>
             </div>

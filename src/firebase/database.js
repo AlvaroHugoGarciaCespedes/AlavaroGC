@@ -87,7 +87,7 @@ function writeUserData(ruteDB, object, setUserData, setUserSuccess) {
   update(ref(db, `${ruteDB}`), object)
     .then(() => {
       setUserSuccess !== null ? setUserSuccess('save') : ''
-      getIndexData(setUserData,)
+      getUserData(setUserData)
     })
     .catch((e) => console.log(e))
 }

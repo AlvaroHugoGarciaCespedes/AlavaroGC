@@ -19,7 +19,7 @@ export default function List({ styled, children }) {
         <>
             <li className={`block mb-2 text-sm text-left font-light text-gray-900 shadow-[0px_0px_3px_0.1px_#00A582] px-5`}>{children}</li>
 
-            {user && <div className='flex'>
+            {user && <div className='grid grid-cols-2 gap-1 lg:gap-5'>
                 <Button theme='Danger' click={handlerRemoveData}>Eliminar</Button>
                 <Button theme='Secondary' click={handlerEditData}>Editar</Button>
             </div>}

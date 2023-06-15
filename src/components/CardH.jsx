@@ -11,7 +11,7 @@ export default function CardH({ image, service, description, remote, cost, time,
     const { user, userDB, item, setUserItem, setUserModal, setUserProfile, setUserSuccess, success, setUserData } = useUser()
 
     function handlerRemoveData() {
-        removeData(`services/${item}`, setUserData, setUserSuccess)
+        removeData(`services/${i}`, setUserData, setUserSuccess)
     }
 
     function handlerEditData() {
@@ -59,7 +59,7 @@ export default function CardH({ image, service, description, remote, cost, time,
                     : ''
                 }
             </div>
-            {user && <div className='flex'>
+            {user && <div className='grid grid-cols-2 gap-1 lg:gap-5'>
                 <Button theme='Danger' click={handlerRemoveData}>Eliminar</Button>
                 <Button theme='Secondary' click={handlerEditData}>Editar</Button>
             </div>}

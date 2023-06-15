@@ -16,12 +16,6 @@ export default function Navbar({ children, funcion }) {
 
 
 
-
-    const signOutHandler = () => {
-        setUserProfile(null)
-        signOut()
-    }
-
     const pathnameHandler = () => {
         console.log(pathname)
 

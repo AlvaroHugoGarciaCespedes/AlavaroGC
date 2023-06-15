@@ -29,9 +29,7 @@ function Home() {
   // }
 
   function handlerState(data) {
-    data == modal
-      ? setUserModal(null)
-      : setUserModal(data)
+      setUserModal(data)
   }
 
   const whatsappHandler = () => {
@@ -65,7 +63,7 @@ function Home() {
             <div className='flex flex-col'><span className='text-[#00A582] text-center text-[25px] font-bold'>5K</span><span className='text-[#00A582]'>Experiencia</span></div>
             <div className='flex flex-col'><span className='text-[#00A582] text-center text-[25px] font-bold'>3K</span><span className='text-[#00A582]'>Servicios</span></div>
           </div>
-          <div className='lg:flex '>
+          <div className='lg:grid lg:grid-cols-2 lg:gap-5 '>
             <Button theme="Secondary">Servicios</Button>
             <Button theme="Primary">Contactar</Button>
           </div>
