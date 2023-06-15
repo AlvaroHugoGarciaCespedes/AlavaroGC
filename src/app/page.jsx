@@ -41,7 +41,10 @@ function Home() {
   const onChangeWhatsapp = (e) => {
     setMsg(e.target.value)
   }
-  console.log(userDB)
+  const handlerSendWhatsapp = (e) => {
+    const whats = msg.replaceAll('%20')
+    userDB && userDB.frontPage && userDB.frontPage['whatsapp'] && window.open(`https://api.whatsapp.com/send?phone=${userDB.frontPage['whatsapp']}&text=${whats}`, '_blank')
+  }
 
   return (
     userDB && <main className="flex min-h-screen w-full flex-col items-center justify-between px-5">
@@ -77,9 +80,9 @@ function Home() {
               userDB && userDB.services !== undefined && Object.keys(userDB.services).map((i, index) =>
                 <div>
                   <CardH image={userDB.services[i]['url']} service={userDB.services[i]['titulo de servicio']} description={userDB.services[i]['descripcion de servicio']} remote={userDB.services[i]['servicio remoto']} cost={userDB.services[i]['costo']} time={userDB.services[i]['tiempo de entrega']} i={i} index={index}></CardH>
-                  <div class="inline-flex items-center justify-center w-full">
-                    <hr class="w-64 h-px my-8 bg-[#00A582] border-0 dark:bg-gray-700" />
-                    <span class="absolute px-3 font-medium text-[#00A582] -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900 z-0">•</span>
+                  <div className="inline-flex items-center justify-center w-full">
+                    <hr className="w-64 h-px my-8 bg-[#00A582] border-0 dark:bg-gray-700" />
+                    <span className="absolute px-3 font-medium text-[#00A582] -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900 z-0">•</span>
                   </div>
                 </div>
               )
@@ -92,18 +95,18 @@ function Home() {
         <div className='lg:grid lg:grid-cols-2 lg:gap-4 py-5 mt-5'>
           <img src="./articulo.png" className='pt-5 pb-5' alt="" />
           <ul className='border-l-2 border-[#01C89E] pl-5 pt-5 pb-5 flex flex-col justify-between '>
-            {/* {
-              userDB && userDB.articles !== undefined && Object.keys(userDB.articles).map((i, index) => <List key={index}>
-                <Link href={userDB.articles[i]['url']}>{userDB.articles[i]['titulo de articulo']}</Link>
+            {
+              userDB && userDB.articles !== undefined && Object.keys(userDB.articles).map((i, index) => <List>
+                <Link href={userDB.articles[i] && userDB.articles[i]['url']}>{userDB.articles[i]['titulo de articulo']}</Link>
               </List>
               )
-            } */}
+            }
           </ul>
         </div>
       </section>
 
       <Navleft funcion={handlerState}></Navleft>
-      <img src="/whatsapp.svg" class="fixed h-[50px] w-[50px] bottom-[80px] right-[20px] lg:bottom-[20px]" onClick={whatsappHandler} alt="" />
+      <img src="/whatsapp.svg" className="fixed h-[50px] w-[50px] bottom-[80px] right-[20px] lg:bottom-[20px]" onClick={whatsappHandler} alt="" />
 
       <div className={`fixed bottom-[80px] right-[20px] pt-14 pb-9 px-2 flex flex-grow flex-col justify-end rounded-[10px] border-gray-200 shadow bg-[url('/background.jpeg')] ${whatsapp ? 'fixed' : 'hidden'}`} >
         <div className='absolute top-0 left-0  w-full h-[50px] bg-[#00826A] rounded-t-[10px]'>
@@ -126,22 +129,22 @@ function Home() {
 
         <div className='flex absolute w-full left-0 bottom-0'>
           <input type="text" className=' w-full text-[12px] rounded-[20px] outline-none px-[10px]' onChange={onChangeWhatsapp} />
-          <span className='w-[24px] p-[3px] bg-[#00826A] rounded-[20px]'><img src="/send.svg" className='h-[18px]' alt="" /></span>
+          <span className='w-[24px] p-[3px] bg-[#00826A] rounded-[20px]' onClick={handlerSendWhatsapp}><img src="/send.svg" className='h-[18px]' alt="" /></span>
         </div>
 
       </div>
-      <footer class="w-full bg-neutral-900 text-center text-white mt-[70px] z-20">
-        <div class="container px-6 pt-6 flex justify-center">
-          <div class="mb-6 flex justify-center">
+      <footer className="w-full bg-neutral-900 text-center text-white mt-[70px] z-20">
+        <div className="container px-6 pt-6 flex justify-center">
+          <div className="mb-6 flex justify-center">
             <a
               href="#!"
               type="button"
-              class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="mx-auto h-full w-4"
+                className="mx-auto h-full w-4"
                 fill="currentColor"
                 viewBox="0 0 24 24">
                 <path
@@ -152,12 +155,12 @@ function Home() {
             <a
               href="#!"
               type="button"
-              class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="mx-auto h-full w-4"
+                className="mx-auto h-full w-4"
                 fill="currentColor"
                 viewBox="0 0 24 24">
                 <path
@@ -168,12 +171,12 @@ function Home() {
             <a
               href="#!"
               type="button"
-              class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="mx-auto h-full w-4"
+                className="mx-auto h-full w-4"
                 fill="currentColor"
                 viewBox="0 0 24 24">
                 <path
@@ -186,12 +189,12 @@ function Home() {
             <a
               href="#!"
               type="button"
-              class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="mx-auto h-full w-4"
+                className="mx-auto h-full w-4"
                 fill="currentColor"
                 viewBox="0 0 24 24">
                 <path
@@ -202,12 +205,12 @@ function Home() {
             <a
               href="#!"
               type="button"
-              class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="mx-auto h-full w-4"
+                className="mx-auto h-full w-4"
                 fill="currentColor"
                 viewBox="0 0 24 24">
                 <path
@@ -219,10 +222,10 @@ function Home() {
         </div>
 
         <div
-          class="p-4 text-center"
+          className="p-4 text-center"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
           © 2023 Copyright:
-          <a class="text-whitehite" href="https://tailwind-elements.com/"
+          <a className="text-whitehite" href="https://tailwind-elements.com/"
           >Swoou </a
           >
         </div>

@@ -9,6 +9,7 @@ import Button from '@/components/Button'
 import Input from '@/components/Input'
 // import Error from '@/components/Error'
 import { generateUUID } from '@/utils/uuid'
+import { useMask } from '@react-input/mask';
 
 import { useRouter } from 'next/navigation';
 
@@ -20,6 +21,7 @@ export default function Modal({ theme, styled, click, children, }) {
     const [data, setData] = useState({})
     const [dataURL, setDataURL] = useState({})
     const [check, setCheck] = useState(false)
+    const inputRefWhatsApp = useMask({ mask: '+ 591 __ ___ ___', replacement: { _: /\d/ } });
 
     function checkHandler() {
         setCheck(!check)
@@ -152,7 +154,7 @@ export default function Modal({ theme, styled, click, children, }) {
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Whatsapp</label>
-                                <input type="text" name="whatsapp" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['whatsapp']} />
+                                <input type="text" name="whatsapp" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.frontPage && data.frontPage['whatsapp']} ref={inputRefWhatsApp}/>
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Facebook</label>
@@ -237,7 +239,7 @@ export default function Modal({ theme, styled, click, children, }) {
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Whatsapp para la solicitud de servicio</label>
-                                <input type="text" name="whatsapp de servicio" id="first-name" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['whatsapp de servicio']}/>
+                                <input type="text" name="whatsapp de servicio" id="first-name" className="block w-full rounded-md border-0 py-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['whatsapp de servicio']} ref={inputRefWhatsApp}/>
                             </div>
                         </div>
                     </div>
