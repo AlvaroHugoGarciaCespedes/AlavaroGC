@@ -96,6 +96,7 @@ function close () {
         // item !== undefined && userDB && userDB.services && userDB.services[item]['servicio remoto'] && setCheck(userDB.services[item]['servicio remoto'])
     }, [userDB])
 
+    console.log(data)
     switch (theme) {
         case 'Portada':
             return <div className="fixed top-0 left-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-30">
@@ -271,11 +272,11 @@ function close () {
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Título de artículo</label>
-                                <input type="text" name="titulo de articulo" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['titulo de servicio']} />
+                                <input type="text" name="titulo de articulo" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.articles && data.articles[item] && data.articles[item]['titulo de articulo']} />
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Url</label>
-                                <input type="text" name="url" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['descripcion de servicio']} />
+                                <input type="text" name="url" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.articles && data.articles[item] && data.articles[item]['url']} />
                             </div>
                         </div>
                     </div>

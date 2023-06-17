@@ -94,9 +94,7 @@ console.log(userDB)
           <img src="./articulo.png" className='pt-5 pb-5' alt="" />
           <ul className='border-l-2 border-[#01C89E] pl-5 pt-5 pb-5 flex flex-col justify-center '>
             {
-              userDB && userDB.articles !== undefined && Object.keys(userDB.articles).map((i, index) => <List>
-                <Link href={userDB.articles[i] && userDB.articles[i]['url']}>{userDB.articles[i]['titulo de articulo']}</Link>
-              </List>
+              userDB && userDB.articles !== undefined && Object.keys(userDB.articles).map((i, index) => <List i={i} url={userDB.articles[i] && userDB.articles[i]['url']} title={userDB.articles[i]['titulo de articulo']} />
               )
             }
           </ul>
@@ -132,10 +130,11 @@ console.log(userDB)
 
       </div>
       <footer className="w-full bg-neutral-900 text-center text-white mt-[70px] z-20" id="Contacto">
-        <div className="container px-6 pt-6 flex justify-center">
+        <div className="w-full px-6 pt-6 flex justify-center">
           <div className="mb-6 flex justify-center">
             <a
               href={userDB.frontPage && userDB.frontPage.facebook}
+              target='_blank'
               type="button"
               className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
@@ -149,7 +148,6 @@ console.log(userDB)
                   d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
               </svg>
             </a>
-
             <a
               href={userDB.frontPage && userDB.frontPage.twiter}
               type="button"
