@@ -43,7 +43,6 @@ function Home() {
     const whats = msg.replaceAll('%20')
     userDB && userDB.frontPage && userDB.frontPage['whatsapp'] && window.open(`https://api.whatsapp.com/send?phone=${userDB.frontPage['whatsapp']}&text=${whats}`, '_blank')
   }
-console.log(userDB)
   return (
     userDB && <main className="flex min-h-screen w-full flex-col items-center justify-between px-5">
       {userDB && <Modal theme={modal} i={item} />}
@@ -76,7 +75,7 @@ console.log(userDB)
           <ul className='min-w-[80%] grid grid-cols-1 gap-4'>
             {
               userDB && userDB.services !== undefined && Object.keys(userDB.services).map((i, index) =>
-                <div>
+                <div  key={index}>
                   <CardH image={userDB.services[i]['url']} service={userDB.services[i]['titulo de servicio']} description={userDB.services[i]['descripcion de servicio']} remote={userDB.services[i]['servicio remoto']} cost={userDB.services[i]['costo']} time={userDB.services[i]['tiempo de entrega']} whatsapp={userDB.services[i]['whatsapp de servicio']} i={i} index={index}></CardH>
                   <div className="inline-flex items-center justify-center w-full">
                     <hr className="w-64 h-px my-8 bg-[#00A582] border-0 dark:bg-gray-700" />
@@ -94,7 +93,7 @@ console.log(userDB)
           <img src="./articulo.png" className='pt-5 pb-5' alt="" />
           <ul className='border-l-2 border-[#01C89E] pl-5 pt-5 pb-5 flex flex-col justify-center '>
             {
-              userDB && userDB.articles !== undefined && Object.keys(userDB.articles).map((i, index) => <List i={i} url={userDB.articles[i] && userDB.articles[i]['url']} title={userDB.articles[i]['titulo de articulo']} />
+              userDB && userDB.articles !== undefined && Object.keys(userDB.articles).map((i, index) => <List i={i} url={userDB.articles[i] && userDB.articles[i]['url']} title={userDB.articles[i]['titulo de articulo']} key={index}/>
               )
             }
           </ul>
@@ -102,7 +101,7 @@ console.log(userDB)
       </section>
 
       <Navleft funcion={handlerState}></Navleft>
-      <img src="/whatsapp.svg" className="fixed h-[50px] w-[50px] bottom-[80px] right-[20px] lg:bottom-[20px]" onClick={whatsappHandler} alt="" />
+      <img src="/whatsapp.svg" className="fixed h-[50px] w-[50px] bottom-[80px] right-[20px] lg:bottom-[20px] z-30" onClick={whatsappHandler} alt="" />
 
       <div className={`fixed bottom-[80px] right-[20px] pt-14 pb-9 px-2 flex flex-grow flex-col justify-end rounded-[10px] border-gray-200 shadow bg-[#F1E6E0] ${whatsapp ? 'fixed' : 'hidden'}`} >
         <div className='absolute top-0 left-0  w-full h-[50px] bg-[#00826A] rounded-t-[10px]'>
@@ -129,7 +128,7 @@ console.log(userDB)
         </div>
 
       </div>
-      <footer className="w-full bg-neutral-900 text-center text-white mt-[70px] z-20" id="Contacto">
+      <footer className="w-full bg-neutral-900 text-center text-white mt-[70px] z-20" id="Contactos">
         <div className="w-full px-6 pt-6 flex justify-center">
           <div className="mb-6 flex justify-center">
             <a
@@ -177,8 +176,8 @@ console.log(userDB)
                 viewBox="0 0 24 24">
                 <path
                   d="M7 11v2.4h3.97c-.16 1.029-1.2 3.02-3.97 3.02-2.39 0-4.34-1.979-4.34-4.42 0-2.44 1.95-4.42 4.34-4.42 1.36 0 2.27.58 2.79 1.08l1.9-1.83c-1.22-1.14-2.8-1.83-4.69-1.83-3.87 0-7 3.13-7 7s3.13 7 7 7c4.04 0 6.721-2.84 6.721-6.84 0-.46-.051-.81-.111-1.16h-6.61zm0 0 17 2h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2z"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd" />
+                  fillRule="evenodd"
+                  clipRule="evenodd" />
               </svg>
             </a>
 

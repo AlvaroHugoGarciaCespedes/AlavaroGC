@@ -18,7 +18,6 @@ export default function Navbar({ children, funcion }) {
 
     const pathnameHandler = () => {
         console.log(pathname)
-
     }
 
 
@@ -33,7 +32,7 @@ export default function Navbar({ children, funcion }) {
     }
     return (
         <>
-            {user && <div className={`fixed right-[20px] transition-all ease-in-out duration-300 ${add ? 'bottom-[150px] lg:bottom-[73px]' : 'bottom-[-200px] lg:bottom-[73px]'} z-40`}>
+            {user && <div className={`fixed right-[20px] transition-all ease-in-out duration-300 ${add ? 'bottom-[150px] lg:bottom-[73px]' : 'bottom-[-200px] lg:bottom-[73px]'} z-30`}>
                 <button type="button" onClick={() => {setUserItem(undefined); funcion('Portada')}} className="h-[50px] w-[50px] my-1 text-blue-700 bg-gray-950 border border-gray-700 hover:bg-gray-500 hover:text-white focus:outline-none focus:ring-gray-500 font-medium rounded-full text-sm p-2.5 text-center flex justify-center items-center ">
                     <svg className="w-6 h-6 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" fill="#636363"></path>
@@ -48,8 +47,7 @@ export default function Navbar({ children, funcion }) {
                     <span className="sr-only">Icon description</span>
                 </button>
                 <button type="button" onClick={() => {setUserItem(undefined); funcion('Articulos')}} className="h-[50px] w-[50px] my-1 text-blue-700 bg-gray-950 border border-gray-700 flex- hover:bg-gray-500 hover:text-white focus:outline-none focus:ring-gray-500 font-medium rounded-full text-sm p-2.5 text-center flex justify-center items-center ">
-                    <svg className="w-4 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M7 0C6.46957 0 5.96086 0.210714 5.SS58579 0.585786C5.21071 0.960859 5 1.46957 5 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V16C16.5304 16 17.0391 15.7893 17.4142 15.4142C17.7893 15.0391 18 14.5304 18 14V2C18 1.46957 17.7893 0.960859 17.4142 0.585786C17.0391 0.210714 16.5304 0 16 0L7 0Z" fill="#636363" />
+                    <svg className="w-5 h-6 ml-1 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M13 20C13.5304 20 14.0391 19.7893 14.4142 19.4142C14.7893 19.0391 15 18.5304 15 18V5C15 4.46957 14.7893 3.96086 14.4142 3.58579C14.0391 3.21071 13.5304 3 13 3H4C3.46957 3 2.96086 3.21071 2.58579 3.58579C2.21071 3.96086 2 4.46957 2 5V18C2 18.5304 2.21071 19.0391 2.58579 19.4142C2.96086 19.7893 3.46957 20 4 20H13ZM9 5H13V10H9V5ZM4 5H8V6H4V5ZM4 7H8V8H4V7ZM4 9H8V10H4V9ZM4 11H13V12H4V11ZM4 13H13V14H4V13ZM4 15H13V16H4V15Z" fill="#636363" />
                     </svg>
                     <span className="sr-only">Icon description</span>

@@ -6,10 +6,9 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Button from '@/components/Button'
-import Input from '@/components/Input'
 // import Error from '@/components/Error'
 import { generateUUID } from '@/utils/uuid'
-import { useMask } from '@react-input/mask';
+// import { useMask } from '@react-input/mask';
 
 import { useRouter } from 'next/navigation';
 
@@ -21,7 +20,9 @@ export default function Modal({ theme, styled, click, children, }) {
     const [data, setData] = useState({})
     const [dataURL, setDataURL] = useState({})
     const [check, setCheck] = useState(false)
-    const inputRefWhatsApp = useMask({ mask: '+ 591 __ ___ ___', replacement: { _: /\d/ } });
+    // const inputRefWhatsApp = useMask({ mask: '+ 591 __ ___ ___', replacement: { _: /\d/ } });
+    const toggleClass = " transform translate-x-5 bg-[blue]";
+
 
     function checkHandler() {
         setCheck(!check)
@@ -61,16 +62,17 @@ export default function Modal({ theme, styled, click, children, }) {
         const filename = generateUUID()
         const obj = {
             ['servicio remoto']: check,
+            [e.target[1].name]: e.target[1].value,
             [e.target[2].name]: e.target[2].value,
             [e.target[3].name]: e.target[3].value,
             [e.target[4].name]: e.target[4].value,
             [e.target[5].name]: e.target[5].value,
-            [e.target[6].name]: e.target[6].value,
         }
 
         console.log(obj)
-        e.target[0].files[0] && uploadIMG(`services/${item !== undefined ? item : filename}`, 'services', filename, e.target[0].files[0], obj, setUserData, setUserSuccess, 'url')
+        e.target[0].files[0]  && uploadIMG(`services/${item !== undefined ? item : filename}`, 'services', filename, e.target[0].files[0], obj, setUserData, setUserSuccess, 'url')
         e.target[0].files[0] === undefined && writeUserData(`services/${item !== undefined ? item : filename}`, obj, setUserData, setUserSuccess)
+
     }
 
 
@@ -86,20 +88,22 @@ export default function Modal({ theme, styled, click, children, }) {
     }
 
 
-function close () {
-    setUserModal(false)
-}
+    function close(e) {
+        setUserModal(false)
+        setCheck(false)
+    }
 
 
     useEffect(() => {
         setData(userDB)
-        // item !== undefined && userDB && userDB.services && userDB.services[item]['servicio remoto'] && setCheck(userDB.services[item]['servicio remoto'])
-    }, [userDB])
+        item && userDB && userDB.services && userDB.services[item]['servicio remoto'] && setCheck(userDB.services[item]['servicio remoto'])
+        item === undefined && setCheck(false)
+    }, [userDB, data, item])
 
-    console.log(data)
+    console.log(check)
     switch (theme) {
         case 'Portada':
-            return <div className="fixed top-0 left-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-30">
+            return <div className="fixed top-0 left-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-40 " >
                 <form className="relative w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-16 lg:pb-4 px-5" onSubmit={saveFrontPage}>
                     <div className="col-span-full">
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Administrar portada principal</h2>
@@ -198,10 +202,8 @@ function close () {
 
             break
 
-
-
         case 'Servicios':
-            return <div className="fixed top-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-30">
+            return <div className="fixed top-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-40">
                 <form className="relative w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-4 px-5" onSubmit={addService}>
                     <div className="col-span-full">
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Administrar Servicios</h2>
@@ -225,11 +227,21 @@ function close () {
                         </div>
                     </div>
                     <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Servicio presencial y remoto</label>
-                    <div className='flex justify-center w-full'>
-                        <label className="relative inline-flex items-center cursor-pointer" >
-                            <input type="checkbox" value="" className="sr-only peer" onClick={checkHandler} />
-                            <div className={`w-11 h-6 bg-gray-200 rounded-full ${check && 'ring-4 ring-blue-300 bg-blue-600'}  peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600`}></div>
-                        </label>
+                    <div className="flex flex-col justify-center items-center ">
+
+                        <div
+                            className="md:w-14 md:h-7 w-12 h-6 flex items-center bg-gray-200 rounded-full p-1 cursor-pointer"
+                            onClick={() => {
+                                setCheck(!check);
+                            }}
+                        >
+                            <div
+                                className={
+                                    "bg-white md:w-6 md:h-6 h-5 w-5 rounded-full shadow-md transform duration-300 ease-in-out" +
+                                    (check === true && toggleClass)
+                                }
+                            ></div>
+                        </div>
                     </div>
                     <div className="border-b border-gray-900/10 pb-12">
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -251,13 +263,14 @@ function close () {
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Whatsapp para la solicitud de servicio</label>
-                                <input type="text" name="whatsapp de servicio" ref={inputRefWhatsApp} id="first-name" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['whatsapp de servicio']} />
+                                <input type="text" name="whatsapp de servicio" id="first-name" className="block w-full rounded-md border-0 p-1.5 mt-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" defaultValue={data && data.services && data.services[item] && data.services[item]['whatsapp de servicio']} />
                             </div>
                         </div>
                     </div>
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                         <Button type="submit" theme="Primary" >Guardar</Button>
-                    </div> <div className="absolute w-[50px] top-5 right-5 text-white p-1 rounded-tl-lg rounded-br-lg text-center bg-red-600" onClick={close}>
+                    </div> 
+                    <div className="absolute w-[50px] top-5 right-5 text-white p-1 rounded-tl-lg rounded-br-lg text-center bg-red-600" onClick={close}>
                         X
                     </div>
 
@@ -265,7 +278,7 @@ function close () {
             </div>
             break
         case 'Articulos':
-            return <div className="fixed top-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-30">
+            return <div className="fixed top-0 flex justify-center w-full h-auto bg-[#000000b4] p-0 z-40">
                 <form className="relative w-[95%] h-screen overflow-y-scroll lg:w-[50%] bg-white border-b border-gray-900/10 pt-16 pb-4 px-5" onSubmit={addArticle}>
                     <h2 className="text-base font-semibold leading-7 text-gray-900">Administrar artículos</h2>
 

@@ -35,7 +35,7 @@ export default function CardH({ image, service, description, remote, cost, time,
                             {service}
                             <p className="w-full text-sm text-gray-600 flex items-center justify-end text-right font-normal">
                                 <span className={`inline-block h-[5px] w-[5px] mr-[5px] rounded-[5px] ${remote ? 'bg-[#00A582]' : 'bg-gray-500'}`}>
-                                </span> {remote ? 'Servicio prenecial y remoto' : 'Servicio presencial unicamente'}
+                                </span> {remote ? 'Servicio presencial y remoto' : 'Servicio presencial unicamente'}
                             </p>
                         </div>
                         <p className="text-gray-700 text-base">{description}</p>
@@ -48,13 +48,13 @@ export default function CardH({ image, service, description, remote, cost, time,
                         </div>
                     </div>
                     <div className="flex items-baseline justify-between text-gray-900 dark:text-white">
-                        <span className="text-3xl font-semibold">BOB</span>
-                        <span className="text-5xl font-extrabold tracking-tight mr-[5px] lg:mr-[20px]">{cost}</span>
+                        <div>
+                            <span className="text-3xl font-semibold">BOB</span>
+                            <span className="text-5xl font-extrabold tracking-tight mr-[5px] lg:mr-[20px]">{cost}</span>
+                        </div>
                         <Link href={`https://api.whatsapp.com/send?phone=${whatsapp}&text=Hola%20Alvaro`}>
                             <Button theme='Primary'>Solicitar Servicio</Button>
                         </Link>
-
-
                     </div>
                 </div>
                 {index % 2 == 1
