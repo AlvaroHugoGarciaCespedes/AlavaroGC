@@ -90,7 +90,7 @@ export default function Modal({ theme, styled, click, children, }) {
 
     function close(e) {
         setUserModal(false)
-        setCheck(false)
+        setCheck(falses)
     }
 
 
