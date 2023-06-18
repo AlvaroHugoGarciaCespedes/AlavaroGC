@@ -1,14 +1,16 @@
 import { initializeApp } from "firebase/app";
 
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC72v1JaQpSp-l6VGq8gMl2_5KJuuyq62g",
-  authDomain: "abogados-servicios.firebaseapp.com",
-  databaseURL: "https://abogados-servicios-default-rtdb.firebaseio.com",
-  projectId: "abogados-servicios",
-  storageBucket: "abogados-servicios.appspot.com",
-  messagingSenderId: "1079160805835",
-  appId: "1:1079160805835:web:afc20a22568b3d09d27e4e"
+  apiKey: "AIzaSyDM7t9Lcuo3ozMIgCfwKr6MuVY2UchYBy8",
+  authDomain: "alvarogc-3c320.firebaseapp.com",
+  databaseURL: "https://alvarogc-3c320-default-rtdb.firebaseio.com",
+  projectId: "alvarogc-3c320",
+  storageBucket: "alvarogc-3c320.appspot.com",
+  messagingSenderId: "64350898482",
+  appId: "1:64350898482:web:9e75be30b699ad8ae42f2b",
+  measurementId: "G-TW320WHTMS"
 };
 
 export const app = initializeApp(firebaseConfig);
