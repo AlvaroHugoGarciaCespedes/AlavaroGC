@@ -54,10 +54,10 @@ function Home() {
         <div className='h-[50vh] flex flex-col justify-around lg:w-[50vw] lg:h-auto lg:p-12 pt-[20px] lg:pt-[50px]'>
           {/* <div className='hidden h-[30vh] w-[30vh] lg:block' style={{ backgroundImage: `url(${userDB.frontPage['urlIMG']})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
           </div> */}
-          <div className='w-full flex justify-center'>
+          <div className='w-full hidden lg:flex lg:justify-center'>
             <img src={userDB.frontPage['urlIMG']} className='hidden h-[30vh]  lg:block' alt="" />
           </div>
-          <h1 className='w-full text-center text-[12px] lg:text-[16px]'>{userDB.frontPage['direccion']} </h1>
+          <h1 className='w-full hidden  lg:block text-center text-[12px] lg:text-[16px]'>{userDB.frontPage['direccion']} </h1>
 
           <br />
           <div>
