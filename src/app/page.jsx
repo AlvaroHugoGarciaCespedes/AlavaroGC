@@ -47,7 +47,7 @@ function Home() {
     userDB && <main className="flex min-h-screen w-full flex-col items-center justify-between px-5">
       {userDB && <Modal theme={modal} i={item} />}
 
-      <section className='min-h-screen  w-full lg:pt-[70px] pb-0 flex flex-col justify-center items-center lg:flex-row items-center '>
+      <section className='min-h-screen  w-full lg:pt-10 pb-0 flex flex-col justify-center items-center lg:flex-row items-center '>
         <div className='w-screen h-[40vh] flex justify-center items-end lg:w-[50vw] lg:h-[100vh]' style={{ backgroundImage: `url(${userDB.frontPage['url']})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
         </div>
         {/* <img src={userDB.frontPage['url']} className='w-screen h-[35vh] flex justify-center items-end lg:w-[50vw] lg:h-[100vh]' alt="" /> */}
