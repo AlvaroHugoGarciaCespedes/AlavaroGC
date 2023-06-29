@@ -52,6 +52,11 @@ export default function Navbar({ children, funcion }) {
                     </svg>
                     <span className="sr-only">Icon description</span>
                 </button>
+                <button type="button" onClick={() => {setUserItem(undefined); funcion('Contactos')}} className="h-[50px] w-[50px] my-1 text-blue-700 bg-gray-950 border border-gray-700 flex- hover:bg-gray-500 hover:text-white focus:outline-none focus:ring-gray-500 font-medium rounded-full text-sm p-2.5 text-center flex justify-center items-center ">
+                <span className="text-gray-500"> C</span>
+
+                    <span className="sr-only">Icon description</span>
+                </button>
             </div>}
             <div className={`fixed bottom-0 left-0 z-0 w-full h-16 bg-white border-t border-gray-200  dark:bg-gray-700 dark:border-gray-600 lg:hidden`}>
 

@@ -52,9 +52,9 @@ export default function Navbar({ children }) {
                     <li>
                         <a href="#Contactos" className={`hidden lg:block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  ${active === 'Contactos' && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler('Contactos')}>Contactos</a>
                     </li>
-                    <li>
+                    {/* <li>
                         <a href="#Soporte" className={`hidden lg:block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  ${active === 'Soporte' && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler('Soporte')}>Soporte</a>
-                    </li>
+                    </li> */}
                     {user && <li>
                         <Button theme="MiniPrimary" click={signOutHandler}>Cerrar sesión</Button>
                     </li>}
