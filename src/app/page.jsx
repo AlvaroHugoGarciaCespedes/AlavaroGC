@@ -47,11 +47,11 @@ function Home() {
     userDB && <main className="flex min-h-screen w-full flex-col items-center justify-between px-5">
       {userDB && <Modal theme={modal} i={item} />}
 
-      <section className='max-h-screen w-full pt-18 pb-0 flex flex-col justify-between items-center lg:flex-row justify-around items-center pt-[70px]'>
-        <div className='w-screen h-[35vh] flex justify-center items-end lg:w-[50vw] lg:h-[100vh]' style={{ backgroundImage: `url(${userDB.frontPage['url']})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+      <section className='min-h-screen  w-full pt-18 pb-0 flex flex-col justify-center items-center lg:flex-row items-center '>
+        <div className='w-screen h-[40vh] flex justify-center items-end lg:w-[50vw] lg:h-[100vh]' style={{ backgroundImage: `url(${userDB.frontPage['url']})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
         </div>
         {/* <img src={userDB.frontPage['url']} className='w-screen h-[35vh] flex justify-center items-end lg:w-[50vw] lg:h-[100vh]' alt="" /> */}
-        <div className='h-[50vh] flex flex-col justify-around lg:w-[50vw] lg:h-auto lg:p-12 pt-[20px] lg:pt-[50px]'>
+        <div className=' flex flex-col  justify-center lg:justify-around lg:w-[50vw] lg:h-auto lg:p-12 pt-[20px] lg:pt-[50px]'>
           {/* <div className='hidden h-[30vh] w-[30vh] lg:block' style={{ backgroundImage: `url(${userDB.frontPage['urlIMG']})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
           </div> */}
           <div className='w-full hidden lg:flex lg:justify-center'>
@@ -69,7 +69,7 @@ function Home() {
             <div className='flex flex-col'><span className='text-[#00A582] text-[16px]'>Experiencia</span></div>
             <div className='flex flex-col'><span className='text-[#00A582] text-[16px]'>Celeridad</span></div>
           </div>
-          <div className='lg:grid lg:grid-cols-2 lg:gap-5 '>
+          <div className=' lg:grid lg:grid-cols-2 lg:gap-5 '>
             <Link href="#Servicios"><Button theme="Secondary" >Servicios</Button></Link> 
             <Link href={`https://api.whatsapp.com/send?phone=${userDB.frontPage['whatsapp']}&text=Hola%20Alvaro`}><Button theme="Primary" >Contactar</Button></Link>
           </div>
