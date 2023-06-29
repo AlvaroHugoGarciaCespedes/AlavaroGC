@@ -110,7 +110,7 @@ function Home() {
       <Navleft funcion={handlerState}></Navleft>
       <img src="/whatsapp.svg" className="fixed h-[50px] w-[50px] bottom-[80px] right-[20px] lg:bottom-[20px] z-30" onClick={whatsappHandler} alt="" />
 
-      <div className={`fixed bottom-[80px] right-[20px] pt-14 pb-9 px-2 flex flex-grow flex-col justify-end rounded-[10px] border-gray-200 shadow bg-[#F1E6E0] ${whatsapp ? 'fixed' : 'hidden'}`} >
+      <div className={`fixed bottom-[80px] right-[20px] pt-14 pb-9 px-2 flex flex-grow flex-col justify-end rounded-[10px] border-gray-200 shadow bg-[#F1E6E0] ${whatsapp ? 'fixed' : 'hidden'} z-50`} >
         <div className='absolute top-0 left-0  w-full h-[50px] bg-[#00826A] rounded-t-[10px]'>
           <img src="/perfil.jpg" className='absolute h-[35px] w-[35px] left-[5px] top-[7.5px]  rounded-[35px]' alt="" />
           <div className='absolute flex flex-col left-[50px] top-[12px] text-white text-[12px]'>
