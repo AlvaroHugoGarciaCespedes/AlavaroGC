@@ -38,19 +38,19 @@ export default function Navbar({ children }) {
             {<div className={`absolute top-[60px] w-1/2  transition-all z-0 ${nav ? 'right-0' : 'right-[-550px]'} lg:w-auto lg:right-[35px] lg:top-[0px] lg:flex lg:h-[60px]`} >
                 <ul className="flex flex-col bg-gray-950 p-4 lg:p-0 mt-4 font-normal border border-gray-100 rounded-lg  lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:flex-row lg:items-center">
                     <li>
-                        <a href="#" className={`hidden lg:block py-2 pl-3 pr-4 text-gray-200 bg-[#00A582] rounded lg:bg-transparent lg:p-0 ${active === undefined && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler(undefined)}>Inicio</a>
+                        <a href="#" className={` lg:block py-2 pl-3 pr-4 text-gray-200 bg-[#00A582] rounded lg:bg-transparent lg:p-0 ${active === undefined && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler(undefined)}>Inicio</a>
                     </li>
                     <li>
-                        <a href="#Servicios" className={`hidden lg:block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  ${active === 'Servicios' && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler('Servicios')}>Servicios</a>
+                        <a href="#Servicios" className={` lg:block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  ${active === 'Servicios' && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler('Servicios')}>Servicios</a>
                     </li>
                     <li>
-                        <a href="#Articulos" className={`hidden lg:block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  ${active === 'Articulos' && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler('Articulos')}>Articulos</a>
+                        <a href="#Articulos" className={` lg:block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  ${active === 'Articulos' && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler('Articulos')}>Articulos</a>
                     </li>
                     {/* <li>
                         <a href="#AcercaDeMi" className="block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-blue-700 lg:p-0 ${active === undefined && 'lg:text-[#00A582]' }`} onClick={pathnameHandler}>Acerca de mi</a>
                     </li> */}
                     <li>
-                        <a href="#Contactos" className={`hidden lg:block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  ${active === 'Contactos' && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler('Contactos')}>Contactos</a>
+                        <a href="#Contactos" className={` lg:block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  ${active === 'Contactos' && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler('Contactos')}>Contactos</a>
                     </li>
                     {/* <li>
                         <a href="#Soporte" className={`hidden lg:block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  ${active === 'Soporte' && 'lg:text-[#00A582]' }`} onClick={()=>pathnameHandler('Soporte')}>Soporte</a>

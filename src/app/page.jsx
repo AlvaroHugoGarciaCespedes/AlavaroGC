@@ -43,6 +43,7 @@ function Home() {
     const whats = msg.replaceAll('%20')
     userDB && userDB.frontPage && userDB.frontPage['whatsapp'] && window.open(`https://api.whatsapp.com/send?phone=${userDB.frontPage['whatsapp']}&text=${whats}`, '_blank')
   }
+  
   return (
     userDB && <main className="flex min-h-screen w-full flex-col items-center justify-between px-5">
       {userDB && <Modal theme={modal} i={item} />}
@@ -58,7 +59,6 @@ function Home() {
             <img src={userDB.frontPage['urlIMG']} className='hidden h-[30vh]  lg:block' alt="" />
           </div>
           <h1 className='w-full hidden  lg:block text-center text-[12px] lg:text-[16px]'>{userDB.frontPage['direccion']} </h1>
-
           <br />
           <div>
             <h1 className='w-full text-center text-[16px] lg:text-[22px]'><span className='text-[#00A582] font-bold'>{userDB.frontPage['nombre']}</span><span className='text-gray-950 font-bold	'>{userDB.frontPage['apellidos']}</span></h1>
