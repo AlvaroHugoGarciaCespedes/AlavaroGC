@@ -16,8 +16,6 @@ function onAuth(setUserProfile, setUserData, postsIMG, setUserPostsIMG, setUserD
     } else {
       setUserProfile(user)
     }
-
-
   });
 }
 
@@ -52,17 +50,23 @@ function handleSignOut() {
 const dbRef = ref(getDatabase());
 
 
-async function getUserData(setUserData) {        
+async function getUserData(setUserData) {
 
   get(query(ref(db, '/')))
     .then((snapshot) => {
       if (snapshot.exists()) {
+
         let snap = snapshot.val()
-        setUserData(snap)
+       let ar = Object.entries(snap.services).map((i)=>{
+          return {...i[1], uid: i[0]}
+        })
+      
+        const arr = ar.sort(function (a, b) {
+           return a.posicion - b.posicion })
+        // console.log(arr)
+        setUserData({ ...snap, services: arr })
       }
-
     });
-
 }
 
 

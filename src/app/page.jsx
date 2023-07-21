@@ -81,9 +81,9 @@ function Home() {
         <div className='min-h-screen w-full flex flex-col justify-between items-center lg:flex-row justify-around items-center '>
           <ul className='min-w-[80%] grid grid-cols-1 gap-4'>
             {
-              userDB && userDB.services !== undefined && Object.keys(userDB.services).map((i, index) =>
+              userDB && userDB.services !== undefined && userDB.services.map((i, index) =>
                 <div key={index}>
-                  <CardH image={userDB.services[i]['url']} service={userDB.services[i]['titulo de servicio']} description={userDB.services[i]['descripcion de servicio']} remote={userDB.services[i]['servicio remoto']} cost={userDB.services[i]['costo']} time={userDB.services[i]['tiempo de entrega']} whatsapp={userDB.services[i]['whatsapp de servicio']} i={i} index={index}></CardH>
+                  <CardH image={i['url']} service={i['titulo de servicio']} description={i['descripcion de servicio']} remote={i['servicio remoto']} cost={i['costo']} time={i['tiempo de entrega']} whatsapp={i['whatsapp de servicio']} i={i} index={index}></CardH>
                   <div className="inline-flex items-center justify-center w-full">
                     <hr className="w-64 h-px my-8 bg-[#00A582] border-0 dark:bg-gray-700" />
                     <span className="absolute px-3 font-medium text-[#00A582] -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900 z-0">•</span>
@@ -97,7 +97,7 @@ function Home() {
       <section className='w-full pt-[70px]' id="Articulos">
         <Subtitle>Artículos</Subtitle>
         <div className='lg:grid lg:grid-cols-2 lg:gap-4 py-5 mt-5'>
-          <img src="./articulo.png" className='pt-5 pb-5' alt="" />
+          <img src={userDB && userDB.articleIMG.IMG2023.url} className='relative left-0 right-0 top-0 bottom-0 m-auto h-full pt-5 pb-5' alt="" />
           <ul className='border-l-2 border-[#01C89E] pl-5 pt-5 pb-5 flex flex-col justify-center '>
             {
               userDB && userDB.articles !== undefined && Object.keys(userDB.articles).map((i, index) => <List i={i} url={userDB.articles[i] && userDB.articles[i]['url']} title={userDB.articles[i]['titulo de articulo']} key={index} />

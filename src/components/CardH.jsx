@@ -12,7 +12,7 @@ export default function CardH({ image, service, description, remote, cost, time,
     const { user, userDB, item, setUserItem, setUserModal, setUserProfile, setUserSuccess, success, setUserData } = useUser()
 
     function handlerRemoveData() {
-        removeData(`services/${i}`, setUserData, setUserSuccess)
+        removeData(`services/${i.uid}`, setUserData, setUserSuccess)
     }
 
     function handlerEditData() {
@@ -48,10 +48,12 @@ export default function CardH({ image, service, description, remote, cost, time,
                         </div>
                     </div>
                     <div className="flex items-baseline justify-between text-gray-900 dark:text-white">
-                        <div>
+                        {cost.replace(/[^0-9]/g,"").length > 0 
+                        ? <div>
                             <span className="text-3xl font-semibold">BOB</span>
                             <span className="text-5xl font-extrabold tracking-tight mr-[5px] lg:mr-[20px]">{cost}</span>
                         </div>
+                    :<span className="text-2xl font-semibold">{cost}</span>}
                         <Link href={`https://api.whatsapp.com/send?phone=${whatsapp}&text=Hola%20Alvaro`}>
                             <Button theme='Primary'>Solicitar Servicio</Button>
                         </Link>
